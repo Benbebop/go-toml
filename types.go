@@ -7,6 +7,7 @@ import (
 )
 
 var timeType = reflect.TypeOf((*time.Time)(nil)).Elem()
+var durationType = reflect.TypeOf((*time.Duration)(nil)).Elem()
 var textMarshalerType = reflect.TypeOf((*encoding.TextMarshaler)(nil)).Elem()
 var textUnmarshalerType = reflect.TypeOf((*encoding.TextUnmarshaler)(nil)).Elem()
 var mapStringInterfaceType = reflect.TypeOf(map[string]interface{}(nil))

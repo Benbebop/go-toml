@@ -852,6 +852,12 @@ func (d *decoder) unmarshalLocalTime(value *unstable.Node, v reflect.Value) erro
 		return unstable.NewParserError(rest, "extra characters at the end of a local time")
 	}
 
+	if v.Type() == durationType {
+		cast := lt.AsDuration()
+		v.Set(reflect.ValueOf(cast))
+		return nil
+	}
+
 	v.Set(reflect.ValueOf(lt))
 	return nil
 }

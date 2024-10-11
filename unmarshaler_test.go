@@ -604,6 +604,20 @@ foo = "bar"`,
 			},
 		},
 		{
+			desc:  "local-time into duration",
+			input: `a = 12:08:05.666666666`,
+			gen: func() test {
+				var v map[string]time.Duration
+
+				return test{
+					target: &v,
+					expected: &map[string]time.Duration{
+						"a": 12*time.Hour + 8*time.Minute + 5*time.Second + 666666666*time.Nanosecond, //toml.LocalTime{Hour: 12, Minute: 8, Second: 5, Nanosecond: 666666666, Precision: 9},
+					},
+				}
+			},
+		},
+		{
 			desc:  "local-time missing digit",
 			input: `a = 12:08:0`,
 			gen: func() test {

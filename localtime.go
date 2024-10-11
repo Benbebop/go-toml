@@ -50,6 +50,11 @@ type LocalTime struct {
 	Precision  int // Number of digits to display for Nanosecond.
 }
 
+// AsDuration converts d into a duration
+func (d LocalTime) AsDuration() time.Duration {
+	return time.Duration(d.Hour)*time.Hour + time.Duration(d.Minute)*time.Minute + time.Duration(d.Second)*time.Second + time.Duration(d.Nanosecond)*time.Nanosecond
+}
+
 // String returns RFC 3339 representation of d.
 // If d.Nanosecond and d.Precision are zero, the time won't have a nanosecond
 // component. If d.Nanosecond > 0 but d.Precision = 0, then the minimum number
